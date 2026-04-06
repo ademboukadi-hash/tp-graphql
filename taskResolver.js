@@ -45,6 +45,25 @@ const taskResolver = {
       }
       return null;
     },
+   
+    changeDescription: (_, { id, description }) => {
+      const task = tasks.find(t => t.id === id);
+      if (task) {
+        task.description = description;
+        return task;
+      }
+      return null;
+    },
+
+    
+    deleteTask: (_, { id }) => {
+      const taskIndex = tasks.findIndex(task => task.id === id);
+      if (taskIndex !== -1) {
+        tasks.splice(taskIndex, 1);
+        return true;
+      }
+      return false;
+    },
   },
 };
 
